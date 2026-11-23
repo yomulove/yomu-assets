@@ -176,7 +176,13 @@
   if(mcBar&&mcReg&&IO){window.__ypObs.push(new IntersectionObserver(function(es){es.forEach(function(e){mcBar.classList.toggle("on",!e.isIntersecting&&e.boundingClientRect.top<0);});},{root:root}));window.__ypObs[window.__ypObs.length-1].observe(mcReg);}
 
   var HOOK='https://hook.us2.make.com/qrlmjo4imsgn7x2bjjv5fs0542b2brnq',GRACIAS='/gracias-masterclass';
-  $$('form[data-mc-form]').forEach(function(f){
+  /* Origen del registro (solo donde hay formulario de la Masterclass): utm_medium y utm_content de la URL
+     al cargar, guardados en sessionStorage. Si la URL trae UTM, reemplazan a los guardados; si no, se usan los guardados. */
+  var mcForms=$$('form[data-mc-form]'),utm={m:'',c:''};
+  if(mcForms.length){var q=new URLSearchParams(location.search),um=q.get('utm_medium'),uc=q.get('utm_content');utm={m:um||'',c:uc||''};
+    try{if(um||uc)sessionStorage.setItem('yomu_utm',JSON.stringify(utm));else utm=JSON.parse(sessionStorage.getItem('yomu_utm')||'null')||utm;}catch(e){}}
+  var uM=String(utm.m||'').trim().toLowerCase(),origen=['ads','org','email'].indexOf(uM)>-1?uM:'otro';
+  mcForms.forEach(function(f){
     var btn=$('button[type="submit"]',f),err=$('.mc-err',f),label=btn.textContent,busy=false;
     var req=$$('[required]',f);
     req.forEach(function(el){el.addEventListener(el.tagName==='SELECT'?'change':'input',function(){if(el.getAttribute('aria-invalid')==='true')el.setAttribute('aria-invalid',String(!el.checkValidity()||!el.value.trim()));});});
@@ -189,6 +195,7 @@
       var data=new URLSearchParams();
       data.append('name',f.elements.name.value.trim());data.append('email',f.elements.email.value.trim());
       data.append('perfil',f.elements.perfil.value);data.append('source','landing-mc-dic5');
+      data.append('origen',origen);data.append('origen_detalle',String(utm.c||''));
       var fail=function(){busy=false;btn.disabled=false;btn.textContent=label;err.hidden=false;};
       var ctl=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ctl)ctl.abort();},20000);
       fetch(HOOK,{method:'POST',mode:'no-cors',body:data,keepalive:true,signal:ctl?ctl.signal:undefined})
