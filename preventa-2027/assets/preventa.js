@@ -102,7 +102,7 @@
     if(!p.firstChild){var fr=document.createElement('iframe');fr.src=p.dataset.src;fr.title=p.dataset.title;fr.loading='lazy';fr.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';p.appendChild(fr);}
     var o=p.hidden;p.hidden=!o;b.setAttribute('aria-expanded',o);});});
 
-  /* Respiración YOMU con los dedos: siempre inhala y la abres, exhala y la cierras */
+  /* Respiración YOMU con los dedos: como dice la canción, "Inhala y abres, exhala y cierras" */
   var go=document.getElementById('go');
   if(go){
     var TOTAL=10,OUT=5000,IN=4000,steps=document.getElementById('steps'),cue=document.getElementById('cue'),count=document.getElementById('count');
@@ -115,8 +115,8 @@
     var stop=function(){running=false;clearTimeout(timer);if(sph)sph.className='sphere';go.textContent=n>=TOTAL?'Otra vez':'Seguir respirando';mark();if(n>=TOTAL)n=0;};
     var breath=function(){if(!running)return;
       if(n>=TOTAL){stop();say('Sigue respirando serenamente mientras abres y cierras tus manos.');return;}
-      mark();say('Inhala y la abres…');phase('inhale',4);
-      timer=setTimeout(function(){if(!running)return;say('…exhala y la cierras.');phase('exhale',5);timer=setTimeout(function(){n++;breath();},OUT);},IN);};
+      mark();say('Inhala y abres…');phase('inhale',4);
+      timer=setTimeout(function(){if(!running)return;say('Exhala y cierras…');phase('exhale',5);timer=setTimeout(function(){n++;breath();},OUT);},IN);};
     go.addEventListener('click',function(){if(running){stop();say('En pausa. Seguimos cuando quieras.');}else{running=true;go.textContent='Pausar';breath();}});
     mark();
   }
