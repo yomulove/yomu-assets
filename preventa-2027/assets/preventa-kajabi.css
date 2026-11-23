@@ -34,9 +34,9 @@ picture img,.photo img{width:100%;height:100%;object-fit:cover}
 
 /* Texturas oficiales, siempre a baja opacidad */
 .tex-flor::before,.tex-morada::before,.tex-azul::before{content:"";position:absolute;inset:0;z-index:-1;background-size:cover;background-position:center;pointer-events:none}
-.tex-flor::before{background-image:url(../assets/texturas/flor.jpg);background-image:image-set(url(../assets/texturas/flor.webp) type("image/webp"),url(../assets/texturas/flor.jpg) type("image/jpeg"));opacity:.14}
-.tex-morada::before{background-image:url(../assets/texturas/morada.jpg);background-image:image-set(url(../assets/texturas/morada.webp) type("image/webp"),url(../assets/texturas/morada.jpg) type("image/jpeg"));opacity:.06}
-.tex-azul::before{background-image:url(../assets/texturas/azul.jpg);background-image:image-set(url(../assets/texturas/azul.webp) type("image/webp"),url(../assets/texturas/azul.jpg) type("image/jpeg"));opacity:.07}
+.tex-flor::before{background-image:url(../assets/texturas/flor.jpg?v=2182bba3);background-image:image-set(url(../assets/texturas/flor.webp?v=cdcbe887) type("image/webp"),url(../assets/texturas/flor.jpg?v=2182bba3) type("image/jpeg"));opacity:.14}
+.tex-morada::before{background-image:url(../assets/texturas/morada.jpg?v=21272f14);background-image:image-set(url(../assets/texturas/morada.webp?v=69807a40) type("image/webp"),url(../assets/texturas/morada.jpg?v=21272f14) type("image/jpeg"));opacity:.06}
+.tex-azul::before{background-image:url(../assets/texturas/azul.jpg?v=c2e72ada);background-image:image-set(url(../assets/texturas/azul.webp?v=c93219bc) type("image/webp"),url(../assets/texturas/azul.jpg?v=c2e72ada) type("image/jpeg"));opacity:.07}
 
 /* Botones */
 .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:14px 30px;border-radius:999px;border:1.5px solid transparent;background:var(--wine-700);color:#fff;font:600 16px/1.2 Montserrat,sans-serif;letter-spacing:.06em;text-decoration:none;text-align:center;cursor:pointer;box-shadow:0 10px 24px -8px rgba(126,65,102,.45);transition:transform .4s var(--ease),box-shadow .4s var(--ease),background-color .3s}

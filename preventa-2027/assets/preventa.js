@@ -3,11 +3,20 @@
   var captura=/[?&]captura\b/.test(location.search);
   var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
 
-  /* Loops silenciosos: se reproducen solo en pantalla; con reduced-motion quedan en poster. */
+  /* Carga diferida: al abrir la página solo carga el hero. Cada video recibe su póster (y los loops su archivo)
+     cuando está cerca de la pantalla; los testimonios descargan el video solo al hacer clic.
+     En Kajabi la página vive en un marco con scroll propio (.yp): ese marco es la referencia. */
+  var root=document.querySelector('.yp')||null,IO='IntersectionObserver' in window;
+  var near=IO?new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var v=e.target;near.unobserve(v);
+      if(v.dataset.poster){v.poster=v.dataset.poster;v.removeAttribute('data-poster');}
+      if(v._loop&&!reduce&&!captura&&v.preload==='none'){v.preload='auto';}});},{root:root,rootMargin:'600px 0px'}):null;
+  $$('video[data-poster]').forEach(function(v){if(captura||!near){v.poster=v.dataset.poster;v.removeAttribute('data-poster');}else near.observe(v);});
+
+  /* Loops silenciosos: se reproducen solo cuando se ven; con reduced-motion quedan en póster. */
   $$('.vid-loop video, .vr video, .sloop video').forEach(function(v){
-    v.muted=true;
+    v.muted=true;v._loop=true;
     if(reduce||captura){v.removeAttribute('autoplay');v.pause();return;}
-    if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(v.preload==='none')v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){});}else v.pause();});},{threshold:.3}).observe(v);}
+    if(IO){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(v.preload==='none')v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){});}else if(!v.paused)v.pause();});},{root:root,threshold:.3}).observe(v);}
   });
 
   /* Hero: si el video no carga, queda la foto de respaldo (niña junto al árbol) */
