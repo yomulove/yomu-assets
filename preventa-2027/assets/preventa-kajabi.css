@@ -782,8 +782,9 @@ picture img,.photo img{width:100%;height:100%;object-fit:cover}
   .mc-evento .hero-copy{display:contents}
   .mc-evento .hero-copy>*{grid-column:1}
   .mc-evento .mc-head{grid-row:1}.mc-evento h1{grid-row:2}.mc-evento .sub{grid-row:3}.mc-evento .mc-ticket{grid-row:4}.mc-evento .mc-hosts{grid-row:5}
-  .mc-evento .mc-card{grid-row:6;align-self:center}.mc-evento .mc-times{grid-row:7}
-  .mc-hero .mc-hero-vid{grid-column:2;grid-row:6;align-self:center}
+  .mc-evento .mc-card{grid-row:6;align-self:start}.mc-evento .mc-times{grid-row:7}
+  /* (2026-11-23, ajuste 3) el video sube a la derecha del título: en 1440×900 se ven juntos etiqueta, título, boleto y video */
+  .mc-hero .mc-hero-vid{grid-column:2;grid-row:1 / 6;align-self:center}
 }
 
 /* Kajabi: sin menú ni pie de la plataforma */
