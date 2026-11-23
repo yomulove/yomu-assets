@@ -647,6 +647,13 @@ picture img,.photo img{width:100%;height:100%;object-fit:cover}
   .mc-c1,.mc-c3{display:flex;flex-direction:column;justify-content:center}
 }
 @media (min-width:1024px){.mc-cards{grid-template-columns:1fr 1.05fr;max-width:980px}}
+/* Gracias Masterclass: agregar a mi calendario */
+.mc-cal{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.mc-cal-t{font-size:15px;font-weight:600;color:var(--ink)}
+.mc-cal-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.mc-cal-btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:8px 6px;border-radius:999px;border:1.5px solid var(--wine-700);color:var(--wine-700);font-size:14.5px;font-weight:600;text-decoration:none;transition:background-color .3s}
+.mc-cal-btn:hover{background:rgba(126,65,102,.07)}
+.mc-cal-btn svg{width:17px;height:17px;flex:none}
 
 /* Kajabi: sin menú ni pie de la plataforma */
 #section-header,#section-footer,.announcements{display:none!important}
