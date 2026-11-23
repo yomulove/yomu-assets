@@ -146,6 +146,8 @@
   }
 
   /* Altura para capturas de página completa */
-  addEventListener('load',function(){setTimeout(function(){var d=document.documentElement;d.dataset.h=d.scrollHeight;
-    if(captura)d.dataset.secs=JSON.stringify($$('main>section,footer').map(function(s){var r=s.getBoundingClientRect();return [s.id||s.getAttribute('aria-labelledby')||s.className,Math.round(r.top+scrollY),Math.round(r.height)];}));},900);});
+  /* (en Kajabi este archivo carga después del evento load, así que también corre si la página ya terminó de cargar) */
+  var alto=function(){setTimeout(function(){var d=document.documentElement;d.dataset.h=d.scrollHeight;
+    if(captura)d.dataset.secs=JSON.stringify($$('main>section,footer').map(function(s){var r=s.getBoundingClientRect();return [s.id||s.getAttribute('aria-labelledby')||s.className,Math.round(r.top+scrollY),Math.round(r.height)];}));},900);};
+  if(document.readyState==='complete')alto();else addEventListener('load',alto);
 })();
