@@ -27,7 +27,7 @@
       if(e.isIntersecting)startVid(v,function(){if(v.muted)tapBtn(v);});else if(!v.paused)v.pause();});},{root:root,threshold:.3}):null;
   window.__ypObs=[near,vis];
   $$('.vid-loop video, .vr video, .sloop video').forEach(function(v){
-    v.muted=true;v._loop=true;
+    v.muted=true;v._loop=true;v.controls=false;v.setAttribute('disablepictureinpicture','');v.setAttribute('disableremoteplayback','');v.setAttribute('x-webkit-airplay','deny');
     if(reduce||captura){v.removeAttribute('autoplay');v.pause();return;}
     if(vis)vis.observe(v);
   });

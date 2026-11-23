@@ -624,6 +624,29 @@ picture img,.photo img{width:100%;height:100%;object-fit:cover}
 .mc-thanks .mc-event{margin-top:30px}
 @media (max-width:759px){.mc-thanks h1{font-size:clamp(34px,9.6vw,40px)}.mc-wa .mc-wa-btn{font-size:15.5px;padding:14px 18px}}
 @media (min-width:760px){.mc-wa .mc-wa-btn{width:auto;display:inline-flex;padding:18px 36px}}
+/* Masterclass · ajustes de revisión */
+.mc-times summary{list-style:none;display:inline-flex;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid #EAD6CC;transition:background-color .3s}
+.mc-times summary::-webkit-details-marker{display:none}
+.mc-times summary::marker{content:""}
+.mc-times summary:hover{background:#fff}
+.mc-times summary::after{content:"";width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .3s var(--ease)}
+.mc-times[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.mc-times .mc-tz{padding:12px 4px 0}
+/* Videos sin controles nativos: solo el botón de sonido */
+.hero-media video::-webkit-media-controls,.sloop video::-webkit-media-controls,.vid-loop video::-webkit-media-controls,.vr video::-webkit-media-controls{display:none!important}
+.hero-media video::-webkit-media-controls-start-playback-button,.sloop video::-webkit-media-controls-start-playback-button,.vid-loop video::-webkit-media-controls-start-playback-button,.vr video::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
+.hero-media video::-webkit-media-controls-panel,.sloop video::-webkit-media-controls-panel,.vid-loop video::-webkit-media-controls-panel{display:none!important}
+/* Lo que vas a vivir: la práctica en video junto a "Vivirlo" */
+.mc-live{padding:0!important;overflow:hidden;display:flex;flex-direction:column}
+.mc-vid{position:relative;aspect-ratio:4/5;background:#EADBD3}
+.mc-vid video{width:100%;height:100%;object-fit:cover}
+.mc-live-txt{padding:20px 22px 24px}
+@media (min-width:760px){
+  .mc-cards{grid-template-columns:1fr 1fr;grid-template-areas:"a v" "c v";align-items:stretch}
+  .mc-c1{grid-area:a}.mc-c3{grid-area:c}.mc-live{grid-area:v}
+  .mc-c1,.mc-c3{display:flex;flex-direction:column;justify-content:center}
+}
+@media (min-width:1024px){.mc-cards{grid-template-columns:1fr 1.05fr;max-width:980px}}
 
 /* Kajabi: sin menú ni pie de la plataforma */
 #section-header,#section-footer,.announcements{display:none!important}
