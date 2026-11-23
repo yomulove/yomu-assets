@@ -168,4 +168,31 @@
   var alto=function(){setTimeout(function(){var d=document.documentElement;d.dataset.h=d.scrollHeight;
     if(captura)d.dataset.secs=JSON.stringify($$('main>section,footer').map(function(s){var r=s.getBoundingClientRect();return [s.id||s.getAttribute('aria-labelledby')||s.className,Math.round(r.top+scrollY),Math.round(r.height)];}));},900);};
   if(document.readyState==='complete')alto();else addEventListener('load',alto);
+
+  /* Masterclass: formulario propio → Make (x-www-form-urlencoded, sin preflight de CORS).
+     Honeypot lleno = no se envía. Sin datos personales en la URL de gracias. */
+  /* Masterclass: en celular la barra aparece cuando el formulario del hero ya no se ve */
+  var mcBar=$(".mc-bar"),mcReg=document.getElementById("registro");
+  if(mcBar&&mcReg&&IO){window.__ypObs.push(new IntersectionObserver(function(es){es.forEach(function(e){mcBar.classList.toggle("on",!e.isIntersecting&&e.boundingClientRect.top<0);});},{root:root}));window.__ypObs[window.__ypObs.length-1].observe(mcReg);}
+
+  var HOOK='https://hook.us2.make.com/qrlmjo4imsgn7x2bjjv5fs0542b2brnq',GRACIAS='/gracias-masterclass';
+  $$('form[data-mc-form]').forEach(function(f){
+    var btn=$('button[type="submit"]',f),err=$('.mc-err',f),label=btn.textContent,busy=false;
+    var req=$$('[required]',f);
+    req.forEach(function(el){el.addEventListener(el.tagName==='SELECT'?'change':'input',function(){if(el.getAttribute('aria-invalid')==='true')el.setAttribute('aria-invalid',String(!el.checkValidity()||!el.value.trim()));});});
+    f.addEventListener('submit',function(e){e.preventDefault();if(busy)return;err.hidden=true;
+      var first=null;
+      req.forEach(function(el){var bad=!el.value.trim()||!el.checkValidity();el.setAttribute('aria-invalid',String(bad));if(bad&&!first)first=el;});
+      if(first){first.focus();return;}
+      if(f.elements.website&&f.elements.website.value){location.href=GRACIAS;return;}
+      busy=true;btn.disabled=true;btn.textContent='Enviando…';
+      var data=new URLSearchParams();
+      data.append('name',f.elements.name.value.trim());data.append('email',f.elements.email.value.trim());
+      data.append('perfil',f.elements.perfil.value);data.append('source','landing-mc-dic5');
+      var fail=function(){busy=false;btn.disabled=false;btn.textContent=label;err.hidden=false;};
+      var ctl=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ctl)ctl.abort();},20000);
+      fetch(HOOK,{method:'POST',mode:'no-cors',body:data,keepalive:true,signal:ctl?ctl.signal:undefined})
+        .then(function(){clearTimeout(to);location.href=GRACIAS;},function(){clearTimeout(to);fail();});
+    });
+  });
 })();

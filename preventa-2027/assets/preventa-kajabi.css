@@ -526,6 +526,96 @@ picture img,.photo img{width:100%;height:100%;object-fit:cover}
 .vplayer video::-webkit-media-text-track-container,.sloop video::-webkit-media-text-track-container{display:none!important}
 .vplayer video::cue,.sloop video::cue{color:transparent;background:transparent}
 
+/* ═════ MASTERCLASS "La calma se contagia" (misma dirección A) ═════ */
+.mc-logo{display:block;height:34px;width:auto;margin-bottom:16px}
+.mc-hero{padding-top:18px}
+.mc-hero h1{font-size:clamp(40px,11vw,68px)}
+.mc-hero .sub{margin-top:12px;font-size:17px;line-height:1.55}
+.mc-when{margin-top:14px;font-size:17px;line-height:1.45;color:var(--wine-700)}
+.mc-when b{font-weight:700}
+.mc-card{margin-top:18px;background:var(--white);border-radius:var(--r);padding:20px 18px;box-shadow:0 22px 50px -30px rgba(62,26,51,.5);text-align:left}
+.mc-form .fg{margin-bottom:12px}
+.mc-form label{display:block;font-size:15px;font-weight:500;color:var(--ink);margin-bottom:5px}
+.mc-form input,.mc-form select{display:block;width:100%;min-height:50px;padding:11px 14px;border:1.5px solid #E3D0C8;border-radius:14px;background:var(--white);color:var(--ink);font:400 16px/1.3 Montserrat,system-ui,sans-serif;-webkit-appearance:none;appearance:none}
+.mc-form select{padding-right:40px;background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237E4166' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 12px center/20px no-repeat}
+.mc-form select:invalid{color:var(--ink-mute)}
+.mc-form input:focus,.mc-form select:focus{outline:2px solid var(--wine-600);outline-offset:2px;border-color:var(--wine-600)}
+.mc-form [aria-invalid="true"]{border-color:#B3261E;background-color:#FFF6F5}
+.mc-form .btn{width:100%;display:flex;margin-top:6px}
+.mc-form .btn[disabled]{opacity:.75;cursor:progress;transform:none}
+.mc-form .hp{position:absolute!important;left:-10000px;width:1px;height:1px;overflow:hidden}
+.mc-err{margin-top:12px;font-size:15px;line-height:1.45;color:#9B2C2C}
+.mc-err a{color:inherit;font-weight:600}
+.mc-replay{margin-top:12px;font-size:14.5px;line-height:1.5;color:var(--ink-soft)}
+.mc-times{margin-top:14px;font-size:15px;color:var(--ink-soft)}
+.mc-times summary{cursor:pointer;font-weight:600;color:var(--wine-700);min-height:44px;display:flex;align-items:center}
+.mc-tz{list-style:none;display:grid;gap:6px;margin-top:6px}
+.mc-tz li{display:grid;grid-template-columns:7.5em 1fr;gap:10px;font-size:15px}
+.mc-tz b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.mc .scenes{margin-top:22px}
+.mc-stat{margin-top:44px;border-bottom:0;padding-bottom:0}
+.mc-cards{list-style:none;display:grid;gap:16px;margin-top:34px}
+.mc-cards li{background:var(--cream);border-radius:var(--r);padding:24px 22px}
+.mc-cards .ico,.mc-who .ico{width:56px;height:56px}
+.mc-cards p{margin-top:14px;font-size:18px;line-height:1.5;color:var(--ink)}
+.mc-who{list-style:none;display:grid;gap:14px;margin-top:30px}
+.mc-who li{display:flex;align-items:center;gap:16px;background:var(--white);border-radius:var(--r);padding:16px 18px}
+.mc-who h3{font-size:19px;font-weight:500;letter-spacing:0;color:var(--wine-700)}
+.mc-who+.lead{margin-top:20px}
+.mc-team{grid-template-columns:1fr 1fr}
+.mc-figs{grid-template-columns:1fr 1fr}
+.mc-figs li:last-child{grid-column:1/-1}
+.mc-proof{margin-top:44px;display:flex;justify-content:center}
+.mc-proof .vt{width:100%;max-width:380px}
+.mc-final .mc-when{margin-top:18px;text-align:center}
+.mc-final .mc-card{width:100%;max-width:460px;margin-top:22px}
+.mc-final .mc-card .btn{margin-top:6px}
+.mc-thanks .mc-event-name{font-size:clamp(26px,6.6vw,34px);font-weight:300;line-height:1.15;color:var(--ink)}
+.mc-thanks .mc-event-type{margin-top:4px;font-weight:600;color:var(--wine-600)}
+.mc-thanks .mc-card .mc-when{margin-top:10px}
+.mc-thanks .mc-tz{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.mc-mail{margin-top:18px;padding:16px 18px;border-left:3px solid var(--gold);background:rgba(255,255,255,.7);border-radius:0 14px 14px 0}
+.mc-mail p{font-size:16px;line-height:1.55;color:var(--ink-soft)}
+.mc-mail b{color:var(--ink)}
+@media (min-width:760px){
+  .mc-card{padding:28px}
+  .mc-cards{grid-template-columns:repeat(3,1fr);gap:22px}
+  .mc-who{grid-template-columns:repeat(3,1fr)}
+  .mc-who li{flex-direction:column;align-items:flex-start;padding:24px}
+  .mc-team{max-width:720px}
+  .mc-figs{grid-template-columns:repeat(5,1fr)}
+  .mc-figs li:last-child{grid-column:auto}
+}
+@media (min-width:1024px){
+  .mc-hero{padding:40px 0 80px}
+  .mc-hero .hero-grid{grid-template-columns:1fr .9fr;align-items:start}
+  .mc-hero .hero-copy{order:0}
+  .mc-hero .hero-media{position:sticky;top:90px}
+  .mc-hero h1{font-size:clamp(48px,4.6vw,68px)}
+  .mc-hero .mc-card{max-width:520px}
+}
+/* Masterclass en celular: el formulario completo visible sin hacer scroll */
+@media (max-width:759px){
+  .mc-hero{padding:12px 0 44px}
+  .mc-hero .hero-grid{gap:26px}
+  .mc-hero .mc-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .mc-hero .mc-logo{height:24px;margin:0}
+  .mc-hero .eyebrow{margin:0;font-size:11.5px;letter-spacing:.08em;line-height:1.3}
+  .mc-hero h1{font-size:clamp(34px,9.6vw,40px)}
+  .mc-hero .sub{font-size:15.5px;line-height:1.45;margin-top:8px}
+  .mc-hero .mc-when{font-size:15.5px;margin-top:8px}
+  .mc-hero .mc-card{margin-top:12px;padding:14px 16px 16px}
+  .mc-form .fg{margin-bottom:9px}
+  .mc-form label{font-size:14px;margin-bottom:3px}
+  .mc-form input,.mc-form select{min-height:46px;padding:9px 12px}
+  .mc-form .btn{min-height:52px}
+}
+@media (min-width:760px){.mc-hero .mc-head{display:block}.mc-hero .mc-head .eyebrow{margin-top:16px}}
+@media (max-width:759px){
+  .mc-bar{position:fixed;left:0;right:0;top:0;transform:translateY(-105%);transition:transform .35s var(--ease)}
+  .mc-bar.on{transform:none}
+}
+
 /* Kajabi: sin menú ni pie de la plataforma */
 #section-header,#section-footer,.announcements{display:none!important}
 body{background:#fff}
