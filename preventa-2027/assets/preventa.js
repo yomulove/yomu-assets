@@ -7,16 +7,29 @@
      cuando está cerca de la pantalla; los testimonios descargan el video solo al hacer clic.
      En Kajabi la página vive en un marco con scroll propio (.yp): ese marco es la referencia. */
   var root=document.querySelector('.yp')||null,IO='IntersectionObserver' in window;
+  /* iPhone (Safari): con preload="none", cambiar preload no basta; hay que llamar a load() una vez antes de play() */
+  var arm=function(v){if(v._armed)return;v._armed=true;v.preload='auto';if(v.readyState===0)v.load();};
+  /* Si iOS no deja reproducir sola una animación (p. ej. modo de bajo consumo), queda el póster con un botón de play */
+  var tapBtn=function(v){var box=v.parentNode;if(!box||box.querySelector('.vtap'))return;
+    var b=document.createElement('button');b.type='button';b.className='vtap';b.setAttribute('aria-label','Reproducir video');
+    b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>';
+    b.addEventListener('click',function(){arm(v);var p=v.play();if(p&&p.then)p.then(function(){b.remove();}).catch(function(){});else b.remove();});
+    box.appendChild(b);};
+  var startVid=function(v,onFail){arm(v);var p=v.play();if(p&&p.catch)p.catch(function(e){if(e&&e.name==='AbortError')return;if(onFail)onFail(e);});return p;};
   var near=IO?new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var v=e.target;near.unobserve(v);
       if(v.dataset.poster){v.poster=v.dataset.poster;v.removeAttribute('data-poster');}
-      if(v._loop&&!reduce&&!captura&&v.preload==='none'){v.preload='auto';}});},{root:root,rootMargin:'600px 0px'}):null;
+      if(v._loop&&!reduce&&!captura)arm(v);});},{root:root,rootMargin:'600px 0px'}):null;
   $$('video[data-poster]').forEach(function(v){if(captura||!near){v.poster=v.dataset.poster;v.removeAttribute('data-poster');}else near.observe(v);});
 
-  /* Loops silenciosos: se reproducen solo cuando se ven; con reduced-motion quedan en póster. */
+  /* Loops silenciosos: se reproducen solo cuando se ven; con reduced-motion quedan en póster.
+     Un solo observador guardado en una variable: en Safari/WebKit un observador sin referencia se descarta y el loop no arranca. */
+  var vis=IO?new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
+      if(e.isIntersecting)startVid(v,function(){if(v.muted)tapBtn(v);});else if(!v.paused)v.pause();});},{root:root,threshold:.3}):null;
+  window.__ypObs=[near,vis];
   $$('.vid-loop video, .vr video, .sloop video').forEach(function(v){
     v.muted=true;v._loop=true;
     if(reduce||captura){v.removeAttribute('autoplay');v.pause();return;}
-    if(IO){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(v.preload==='none')v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){});}else if(!v.paused)v.pause();});},{root:root,threshold:.3}).observe(v);}
+    if(vis)vis.observe(v);
   });
 
   /* Hero: si el video no carga, queda la foto de respaldo (niña junto al árbol) */
@@ -31,6 +44,8 @@
   var caps=function(box,v,isOn){
     var tr=v.textTracks&&v.textTracks[0];if(!tr)return;
     tr.mode='hidden';
+    /* Safari a veces vuelve a mostrar los subtítulos nativos (quedan dobles): se mantienen ocultos */
+    var keep=function(){if(tr.mode==='showing')tr.mode='hidden';};if(v.textTracks.addEventListener)v.textTracks.addEventListener('change',keep);v.addEventListener('play',keep);v.addEventListener('loadedmetadata',keep);
     var layer=document.createElement('div');layer.className='cap';layer.setAttribute('aria-hidden','true');box.appendChild(layer);
     /* Tamaño según el ancho del video (sin unidades cqw, que Kajabi no soporta) */
     var k=box.classList.contains('vplayer--169')?.027:.046;
@@ -73,7 +88,9 @@
     caps(box,v,function(){return !v.muted;});
     b._set();
     b.addEventListener('click',function(){
-      if(v.muted){hush(v);v.muted=false;v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){});}
+      /* El video sigue visible: solo se activa el sonido y vuelve al inicio */
+      if(v.muted){hush(v);arm(v);v.muted=false;try{if(v.readyState>0)v.currentTime=0;}catch(e){}
+        startVid(v,function(){v.muted=true;b._set();startVid(v);});var t=box.querySelector('.vtap');if(t)t.remove();}
       else v.muted=true;
       b._set();
     });
@@ -81,7 +98,8 @@
 
   /* Testimonios en video: clic para reproducir, con sonido y subtítulos */
   $$('.vplayer').forEach(function(box){var v=$('video',box),b=$('.vplay',box);if(!v)return;
-    if(b)b.addEventListener('click',function(){hush(v);v.play();});
+    if(b)b.addEventListener('click',function(){hush(v);box.classList.add('playing');
+      startVid(v,function(){box.classList.remove('playing');});});
     v.addEventListener('play',function(){hush(v);box.classList.add('playing');v.controls=true;});
     v.addEventListener('pause',function(){box.classList.remove('playing');});
     caps(box,v,function(){return box._force||!v.paused;});
