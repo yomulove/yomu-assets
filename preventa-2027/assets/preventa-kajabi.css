@@ -705,3 +705,5 @@ picture img,.photo img{width:100%;height:100%;object-fit:cover}
 body{background:#fff}
 /* Kajabi (Nova) pone su propia fuente en los títulos: que hereden Montserrat */
 .yp h1,.yp h2,.yp h3,.yp h4,.yp h5,.yp h6{font-family:inherit}
+/* Encore tiene su propia clase .h2 en negrita: aquí manda el peso de la página */
+.yp .h2{font-weight:300}
