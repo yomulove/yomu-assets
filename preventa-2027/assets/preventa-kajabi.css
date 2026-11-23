@@ -702,6 +702,90 @@ picture img,.photo img{width:100%;height:100%;object-fit:cover}
 @media (max-width:759px){.gp-wa{font-size:14.5px;letter-spacing:.03em;padding:14px 18px;gap:10px}}
 @media (min-width:760px){.gp-card{max-width:900px}.gp-facts{column-gap:40px}.gp-facts li{white-space:nowrap}}
 
+/* ═════ MASTERCLASS · HERO DE EVENTO (2026-11-23): rosa y vino como su imagen para compartir; la Preventa no cambia ═════ */
+.mc-evento{background:#F7E1E6}
+.mc-evento.tex-flor::before{opacity:.42}
+.mc-evento::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,246,236,.35) 0%,rgba(255,246,236,0) 45%,rgba(126,65,102,.10) 100%);pointer-events:none}
+.mc-evento .eyebrow{color:var(--wine-700)}
+.mc-ticket{display:flex;align-items:center;gap:14px;margin-top:16px;padding:10px 16px 10px 10px;background:var(--wine-700);color:#fff;border-radius:18px;box-shadow:0 18px 36px -22px rgba(92,44,72,.75);max-width:520px}
+.mc-date{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;width:62px;height:66px;border-radius:12px;background:var(--yellow);color:var(--wine-800);line-height:1;text-transform:uppercase}
+.mc-date span{font-size:11px;font-weight:700;letter-spacing:.12em}
+.mc-date b{font-size:28px;font-weight:700;margin:2px 0}
+.mc-tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow)}
+.mc-ticket .mc-when{margin-top:3px;color:#fff;font-size:16px;line-height:1.4}
+.mc-hosts{display:flex;align-items:center;gap:12px;margin-top:14px}
+.mc-hosts-pics{display:flex;flex:none}
+.mc-hosts-pics img{display:block;width:46px;height:46px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 6px 14px -8px rgba(92,44,72,.6)}
+.mc-hosts-pics picture+picture img{margin-left:-12px}
+.mc-hosts p{font-size:15px;font-weight:600;line-height:1.35;color:var(--wine-800)}
+.mc-hero .mc-hero-vid{aspect-ratio:16/9;border:4px solid #fff;box-shadow:0 30px 60px -28px rgba(92,44,72,.6)}
+.mc-hero .mc-hero-vid video{object-position:50% 40%}
+@media (min-width:1024px){
+  .mc-evento{padding:44px 0 84px}
+  .mc-evento .hero-grid{grid-template-columns:1fr 1.05fr;gap:56px}
+  .mc-hero .mc-hero-vid{aspect-ratio:16/9;position:sticky;top:110px;margin-top:64px}
+  .mc-ticket .mc-when{font-size:17px}
+  .mc-date{width:70px;height:74px}.mc-date b{font-size:32px}
+  .mc-hosts-pics img{width:54px;height:54px}
+  .mc-hosts p{font-size:16px}
+}
+@media (max-width:759px){
+  .mc-ticket{margin-top:12px;gap:12px;padding:8px 12px 8px 8px;border-radius:16px}
+  .mc-date{width:54px;height:58px}.mc-date b{font-size:24px}.mc-date span{font-size:10px}
+  .mc-tag{font-size:11px;letter-spacing:.08em}
+  .mc-ticket .mc-when{font-size:14.5px;margin-top:2px}
+  .mc-hosts{margin-top:10px;gap:10px}
+  .mc-hosts-pics img{width:38px;height:38px;border-width:2px}
+  .mc-hosts-pics picture+picture img{margin-left:-10px}
+  .mc-hosts p{font-size:14px}
+}
+/* Hero de evento en celular: el formulario completo sigue visible sin hacer scroll (iPhone 14) */
+@media (max-width:759px){
+  .mc-evento .mc-head{margin-bottom:6px}
+  .mc-evento .sub{line-height:1.4}
+  .mc-ticket{margin-top:10px;padding:6px 12px 6px 6px}
+  .mc-date{height:54px}
+  .mc-hosts{margin-top:8px}
+  .mc-hosts-pics img{width:34px;height:34px}
+  .mc-evento .mc-card{margin-top:10px;padding:12px 14px 14px}
+  .mc-evento .mc-form .fg{margin-bottom:7px}
+  .mc-evento .mc-form input,.mc-evento .mc-form select{min-height:44px;padding:8px 12px}
+  .mc-evento .mc-form .btn{min-height:52px}
+}
+/* Ajustes 2 (2026-11-23): «MASTERCLASS GRATUITA» como etiqueta principal; horarios con hora de fin; video grande en escritorio */
+.mc-evento .mc-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mc-evento .mc-logo{margin:0}
+.mc-evento .eyebrow.mc-pill{display:inline-block;margin:0;padding:9px 18px;border-radius:999px;background:var(--wine-700);color:#fff;font-size:15px;font-weight:700;letter-spacing:.12em;line-height:1.2;box-shadow:0 10px 22px -12px rgba(92,44,72,.7)}
+.mc-tz li{grid-template-columns:11.5em 1fr}
+@media (min-width:1024px){
+  .mc-evento .mc-head{margin-bottom:22px}
+  .mc-evento .mc-logo{height:34px}
+  .mc-evento .eyebrow.mc-pill{font-size:17px;padding:11px 22px}
+  .mc-evento .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:48px;align-items:center}
+  .mc-hero .mc-hero-vid{position:relative;top:auto;margin-top:0;align-self:center}
+}
+@media (max-width:759px){
+  .mc-evento .mc-head{gap:10px;margin-bottom:8px}
+  .mc-evento .mc-logo{height:24px}
+  .mc-evento .eyebrow.mc-pill{font-size:13px;padding:7px 14px;letter-spacing:.1em}
+  .mc-tz li{grid-template-columns:10.5em 1fr;font-size:14.5px}
+}
+@media (min-width:1024px){.mc-evento .wrap{max-width:1360px}}
+/* Horarios con hora de fin: la hora nunca se parte; columnas alineadas entre filas */
+.mc-tz{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px}
+.mc-tz li{display:contents}
+.mc-tz b{white-space:nowrap}
+@media (max-width:759px){.mc-tz{column-gap:12px}.mc-tz li{font-size:14.5px}}
+/* Escritorio: el video va junto al formulario, centrado verticalmente respecto a él */
+@media (min-width:1024px){
+  .mc-evento .hero-grid{row-gap:0}
+  .mc-evento .hero-copy{display:contents}
+  .mc-evento .hero-copy>*{grid-column:1}
+  .mc-evento .mc-head{grid-row:1}.mc-evento h1{grid-row:2}.mc-evento .sub{grid-row:3}.mc-evento .mc-ticket{grid-row:4}.mc-evento .mc-hosts{grid-row:5}
+  .mc-evento .mc-card{grid-row:6;align-self:center}.mc-evento .mc-times{grid-row:7}
+  .mc-hero .mc-hero-vid{grid-column:2;grid-row:6;align-self:center}
+}
+
 /* Kajabi: sin menú ni pie de la plataforma */
 #section-header,#section-footer,.announcements{display:none!important}
 body{background:#fff}
