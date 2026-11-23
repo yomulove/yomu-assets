@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//YOMU Institute//Masterclass//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:masterclass-la-calma-se-contagia-2026-12-05@yomu.love
+DTSTAMP:20261123T000000Z
+DTSTART:20261205T140000Z
+DTEND:20261205T153000Z
+SUMMARY:La calma se contagia · Masterclass YOMU
+LOCATION:En vivo por Zoom
+DESCRIPTION:El enlace de Zoom te llega por email y al grupo de WhatsApp ant
+ es de la Masterclass. Grupo de WhatsApp: https://chat.whatsapp.com/HFsiwKb
+ 0GkNEH3r52RnceK
+URL:https://chat.whatsapp.com/HFsiwKb0GkNEH3r52RnceK
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:La calma se contagia · Masterclass YOMU empieza en 1 hora
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
