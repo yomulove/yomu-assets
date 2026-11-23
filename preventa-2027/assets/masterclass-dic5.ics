@@ -5,15 +5,19 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:masterclass-la-calma-se-contagia-2026-12-05@yomu.love
-DTSTAMP:20261123T000000Z
+DTSTAMP:20261123T120000Z
+SEQUENCE:1
 DTSTART:20261205T140000Z
 DTEND:20261205T153000Z
 SUMMARY:La calma se contagia · Masterclass YOMU
-LOCATION:En vivo por Zoom
-DESCRIPTION:El enlace de Zoom te llega por email y al grupo de WhatsApp ant
- es de la Masterclass. Grupo de WhatsApp: https://chat.whatsapp.com/HFsiwKb
- 0GkNEH3r52RnceK
-URL:https://chat.whatsapp.com/HFsiwKb0GkNEH3r52RnceK
+LOCATION:https://us06web.zoom.us/j/86148496756?pwd=T9RJaxzHLUxN3IMCuL8q9UAK
+ gRlPek.1
+DESCRIPTION:Masterclass en vivo por Zoom con YOMU Institute.\n\nEntra aquí
+ : https://us06web.zoom.us/j/86148496756?pwd=T9RJaxzHLUxN3IMCuL8q9UAKgRlPek
+ .1\nID de reunión: 861 4849 6756\nCódigo de acceso: YOMU2027\n\nGrupo de
+  WhatsApp: https://chat.whatsapp.com/HFsiwKb0GkNEH3r52RnceK
+URL:https://us06web.zoom.us/j/86148496756?pwd=T9RJaxzHLUxN3IMCuL8q9UAKgRlPe
+ k.1
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
