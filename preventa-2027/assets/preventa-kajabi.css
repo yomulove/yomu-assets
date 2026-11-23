@@ -520,3 +520,5 @@ picture img,.photo img{width:100%;height:100%;object-fit:cover}
 /* Kajabi: sin menú ni pie de la plataforma */
 #section-header,#section-footer,.announcements{display:none!important}
 body{background:#fff}
+/* Kajabi (Nova) pone su propia fuente en los títulos: que hereden Montserrat */
+.yp h1,.yp h2,.yp h3,.yp h4,.yp h5,.yp h6{font-family:inherit}
