@@ -7,11 +7,13 @@
      cuando está cerca de la pantalla; los testimonios descargan el video solo al hacer clic.
      En Kajabi la página vive en un marco con scroll propio (.yp): ese marco es la referencia. */
   var root=document.querySelector('.yp')||null,IO='IntersectionObserver' in window;
+  /* Al abrir el HTML como archivo (file://), Chrome bloquea los videos con crossorigin: se quita para que se reproduzcan, sin subtítulos */
+  if(location.protocol==='file:'){var cvs=document.querySelectorAll('video[crossorigin]');for(var ci=0;ci<cvs.length;ci++)cvs[ci].removeAttribute('crossorigin');}
   /* iPhone (Safari): con preload="none", cambiar preload no basta; hay que llamar a load() una vez antes de play() */
   var arm=function(v){if(v._armed)return;v._armed=true;v.preload='auto';if(v.readyState===0)v.load();};
   /* Si iOS no deja reproducir sola una animación (p. ej. modo de bajo consumo), queda el póster con un botón de play */
   var tapBtn=function(v){var box=v.parentNode;if(!box||box.querySelector('.vtap'))return;
-    var b=document.createElement('button');b.type='button';b.className='vtap';b.setAttribute('aria-label','Reproducir video');
+    var b=document.createElement('button');b.type='button';b.className='vtap';b.setAttribute('aria-label',/^en/.test(((v.closest&&v.closest('[lang]'))||document.documentElement).lang)?'Play video':'Reproducir video');
     b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>';
     b.addEventListener('click',function(){arm(v);var p=v.play();if(p&&p.then)p.then(function(){b.remove();}).catch(function(){});else b.remove();});
     box.appendChild(b);};
@@ -84,7 +86,7 @@
   $$('.snd').forEach(function(b){
     var box=b.parentNode,v=$('video',box);if(!v)return;
     var label=b.textContent.trim();
-    b._set=function(){b.innerHTML=ico+'<span>'+(v.muted?label:'Silenciar')+'</span>';b.setAttribute('aria-pressed',String(!v.muted));box.classList.toggle('sound-on',!v.muted);if(box._drawCap)box._drawCap();};
+    b._set=function(){b.innerHTML=ico+'<span>'+(v.muted?label:(/^en/.test(((b.closest&&b.closest('[lang]'))||document.documentElement).lang)?'Mute':'Silenciar'))+'</span>';b.setAttribute('aria-pressed',String(!v.muted));box.classList.toggle('sound-on',!v.muted);if(box._drawCap)box._drawCap();};
     caps(box,v,function(){return !v.muted;});
     b._set();
     b.addEventListener('click',function(){
