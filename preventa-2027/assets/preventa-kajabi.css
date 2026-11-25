@@ -1045,6 +1045,9 @@ picture img,.photo img{width:100%;height:100%;object-fit:cover}
 .final-firma{margin-top:18px;font-size:16px;line-height:1.5}
 /* Versión YOMU Coaches: la tarjeta sin tachado y sin franja deja el precio a la altura de las que tienen precio tachado */
 .plan--nowas:not(.plan--badge) .price{margin-top:48px}
+/* Versión YOMU Coaches · sección PRO: lista de 3 puntos alineada a la izquierda dentro de la caja centrada */
+.pro-lista{max-width:640px;margin:26px auto 0;text-align:left}
+.pro-lista strong{color:var(--ink);font-weight:700}
 
 /* Kajabi: sin menú ni pie de la plataforma */
 #section-header,#section-footer,.announcements{display:none!important}
